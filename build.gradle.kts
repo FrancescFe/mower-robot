@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.2.21"
+    id("com.diffplug.spotless") version "8.1.0"
 }
 
 group = "org.francescfe"
@@ -19,4 +20,19 @@ kotlin {
 
 tasks.test {
     useJUnitPlatform()
+}
+
+spotless {
+    kotlin {
+        ktlint("1.2.1")
+            .setEditorConfigPath("$rootDir/.editorconfig")
+
+        target("**/*.kt")
+        targetExclude("build/**", ".gradle/**")
+    }
+
+    kotlinGradle {
+        ktlint("1.2.1")
+        target("**/*.gradle.kts")
+    }
 }
