@@ -6,5 +6,7 @@ class MowerDomainException(message: String) : RuntimeException(message) {
             x: Int,
             y: Int,
         ) = MowerDomainException("Invalid position ($x, $y). Coordinates must be >= 0")
+
+        fun invalidInstruction(value: Char) = MowerDomainException("Invalid instruction '$value'")
     }
 }
