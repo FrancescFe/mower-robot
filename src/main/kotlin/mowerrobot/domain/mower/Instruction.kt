@@ -1,6 +1,6 @@
-package org.francescfe.mower.domain.model
+package org.francescfe.mowerrobot.domain.mower
 
-import org.francescfe.mower.domain.exception.MowerDomainException
+import org.francescfe.mowerrobot.domain.mower.exception.MowerDomainException
 
 @JvmInline
 value class Instruction(val value: Char) {

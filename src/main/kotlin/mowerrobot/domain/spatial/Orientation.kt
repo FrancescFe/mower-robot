@@ -1,4 +1,4 @@
-package org.francescfe.mower.domain.model
+package org.francescfe.mowerrobot.domain.spatial
 
 enum class Orientation {
     N,
