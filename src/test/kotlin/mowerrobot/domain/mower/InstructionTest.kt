@@ -5,48 +5,42 @@ import org.francescfe.mowerrobot.domain.mower.Instruction
 import org.francescfe.mowerrobot.domain.mower.exception.MowerDomainException
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
-import kotlin.test.assertFalse
-import kotlin.test.assertTrue
+import kotlin.test.assertIs
+import kotlin.test.assertSame
 
 class InstructionTest {
     @Test
-    fun `should create valid turn left instruction`() {
+    fun `should create turn left instruction`() {
         val instruction = InstructionMother.turnLeft()
 
-        assertTrue(instruction.isTurnLeft())
-        assertFalse(instruction.isTurnRight())
-        assertFalse(instruction.isMove())
+        assertIs<Instruction.TurnLeft>(instruction)
     }
 
     @Test
-    fun `should create valid turn right instruction`() {
+    fun `should create turn right instruction`() {
         val instruction = InstructionMother.turnRight()
 
-        assertFalse(instruction.isTurnLeft())
-        assertTrue(instruction.isTurnRight())
-        assertFalse(instruction.isMove())
+        assertIs<Instruction.TurnRight>(instruction)
     }
 
     @Test
-    fun `should create valid move instruction`() {
+    fun `should create move instruction`() {
         val instruction = InstructionMother.move()
 
-        assertFalse(instruction.isTurnLeft())
-        assertFalse(instruction.isTurnRight())
-        assertTrue(instruction.isMove())
+        assertIs<Instruction.Move>(instruction)
     }
 
     @Test
     fun `should reject invalid instruction character`() {
         assertFailsWith<MowerDomainException> {
-            Instruction('X')
+            Instruction.fromChar('X')
         }
     }
 
     @Test
     fun `should reject lowercase instruction`() {
         assertFailsWith<MowerDomainException> {
-            Instruction('l')
+            Instruction.fromChar('l')
         }
     }
 
@@ -54,6 +48,21 @@ class InstructionTest {
     fun `should create instruction from char using factory method`() {
         val instruction = Instruction.fromChar('M')
 
-        assertTrue(instruction.isMove())
+        assertIs<Instruction.Move>(instruction)
+    }
+
+    @Test
+    fun `turn left instructions are same instance`() {
+        assertSame(Instruction.TurnLeft, Instruction.fromChar('L'))
+    }
+
+    @Test
+    fun `turn right instructions are same instance`() {
+        assertSame(Instruction.TurnRight, Instruction.fromChar('R'))
+    }
+
+    @Test
+    fun `move instructions are same instance`() {
+        assertSame(Instruction.Move, Instruction.fromChar('M'))
     }
 }
