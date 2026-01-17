@@ -22,13 +22,21 @@ Although Spring Boot is a powerful framework for building Java/Kotlin applicatio
 
 ### Domain-Driven Design (DDD)
 
-The project follows DDD principles with a clear separation of concerns:
+The project follows DDD principles with a single bounded context representing the mower navigation domain.
+The domain layer is structured into cohesive subdomains:
 ```
-src/main/kotlin/
-└── mower/
-└── domain/
-├── exception/ # Domain-specific exceptions
-└── model/ # Domain entities and value objects
+src/main/kotlin
+└── org/francescfe/mowerrobot
+    └── domain
+        ├── mower
+        │   ├── Mower.kt
+        │   └── Instruction.kt
+        ├── grid
+        │   └── Grid.kt
+        └── spatial
+            ├── Position.kt
+            └── Orientation.kt
+
 ```
 
 ### Design Principles & Patterns
@@ -45,13 +53,18 @@ src/main/kotlin/
 
 #### Applied Patterns
 
-- **Value Objects**: `Position`, `Orientation`, and `Instruction` are immutable value objects that encapsulate domain concepts with self-validation
+- **Value Objects**: Core domain concepts are immutable value objects that encapsulate domain concepts
 - **Immutability**: All domain objects are immutable; operations return new instances rather than modifying state
 - **Inline Value Class**: `Instruction` uses Kotlin's `@JvmInline value class` for type safety without runtime overhead
 - **Factory Methods**: Static factory methods (e.g., `Instruction.fromChar()`) provide controlled object creation
-- **Fail Fast**: Domain objects are validated at construction time, throwing domain-specific exceptions
+- **Fail Fast**: Invalid instructions are rejected at construction time using domain-specific exceptions
 - **Object Mother** (testing): Test fixtures provide semantic factory methods for creating test objects
 
+### Grid and Movement Decisions
+
+- The Grid is modeled as an immutable value object representing the workspace boundaries. It defines the upper-right coordinates of the allowed area.
+- The Grid exposes a pure validation method `isWithinBounds(position)`, does not control movement nor throw exceptions.
+- Movement decisions remain fully encapsulated within the Mower aggregate, which evaluates candidate positions and decides whether to apply or ignore a movement based on grid constraints.
 
 ### Static Code Formatter
 Spotless has been integrated as a static code formatting tool to ensure consistent code style across the project.
@@ -88,3 +101,5 @@ This project follows a structured Git workflow designed for traceability and cle
 ## Assumptions
 - Invalid instructions are considered domain errors and cause the system to fail fast.
 - The domain model is designed to be framework-agnostic and independent of any input/output or infrastructure concerns.
+- Grid size validation is treated as a configuration concern. Since an invalid grid prevents the system from functioning at all, standard argument validation is used instead of domain-specific exceptions.
+- Attempting to move outside the grid is considered a valid boundary condition and is handled as part of normal domain behavior.
