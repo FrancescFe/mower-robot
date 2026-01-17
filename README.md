@@ -51,7 +51,7 @@ src/main/kotlin
 | **Interface Segregation** | TBD                                                                               |
 | **Dependency Inversion**  | Domain layer has no external dependencies                                         |
 
-#### Applied Patterns
+#### Applied Patterns & Principles
 
 - **Value Objects**: Core domain concepts are immutable value objects that encapsulate domain concepts
 - **Immutability**: All domain objects are immutable; operations return new instances rather than modifying state
@@ -59,6 +59,7 @@ src/main/kotlin
 - **Factory Methods**: Static factory methods (e.g., `Instruction.fromChar()`) provide controlled object creation
 - **Fail Fast**: Invalid instructions are rejected at construction time using domain-specific exceptions
 - **Object Mother** (testing): Test fixtures provide semantic factory methods for creating test objects
+- **FIRST**: Tests are Fast, Isolated, Repeatable, Self-validating, and Thorough
 
 ### Grid and Movement Decisions
 
