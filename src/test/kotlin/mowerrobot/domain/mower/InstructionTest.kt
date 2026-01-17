@@ -1,8 +1,8 @@
-package mower.domain.model
+package mowerrobot.domain.mower
 
-import mower.domain.model.objectMother.InstructionMother
-import org.francescfe.mower.domain.exception.MowerDomainException
-import org.francescfe.mower.domain.model.Instruction
+import mowerrobot.domain.objectMother.InstructionMother
+import org.francescfe.mowerrobot.domain.mower.Instruction
+import org.francescfe.mowerrobot.domain.mower.exception.MowerDomainException
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse

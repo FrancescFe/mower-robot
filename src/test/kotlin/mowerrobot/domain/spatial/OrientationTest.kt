@@ -1,6 +1,6 @@
-package mower.domain.model
+package mowerrobot.domain.spatial
 
-import org.francescfe.mower.domain.model.Orientation
+import org.francescfe.mowerrobot.domain.spatial.Orientation
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

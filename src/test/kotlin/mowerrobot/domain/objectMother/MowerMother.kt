@@ -1,7 +1,7 @@
-package mower.domain.model.objectMother
+package mowerrobot.domain.objectMother
 
-import org.francescfe.mower.domain.model.Mower
-import org.francescfe.mower.domain.model.Orientation
+import org.francescfe.mowerrobot.domain.mower.Mower
+import org.francescfe.mowerrobot.domain.spatial.Orientation
 
 object MowerMother {
     fun atOriginFacingNorth() =

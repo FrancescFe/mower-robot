@@ -1,6 +1,6 @@
-package mower.domain.model.objectMother
+package mowerrobot.domain.objectMother
 
-import org.francescfe.mower.domain.model.Position
+import org.francescfe.mowerrobot.domain.spatial.Position
 
 object PositionMother {
     fun origin() = Position(x = 0, y = 0)
