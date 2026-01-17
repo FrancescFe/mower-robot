@@ -12,11 +12,10 @@ class Mower(
         instruction: Instruction,
         grid: Grid,
     ): Mower =
-        when {
-            instruction.isTurnLeft() -> rotateLeft()
-            instruction.isTurnRight() -> rotateRight()
-            instruction.isMove() -> moveForward(grid)
-            else -> this
+        when (instruction) {
+            is Instruction.TurnLeft -> rotateLeft()
+            is Instruction.TurnRight -> rotateRight()
+            is Instruction.Move -> moveForward(grid)
         }
 
     fun executeAll(

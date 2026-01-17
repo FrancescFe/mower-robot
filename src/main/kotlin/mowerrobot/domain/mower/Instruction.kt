@@ -2,23 +2,20 @@ package org.francescfe.mowerrobot.domain.mower
 
 import org.francescfe.mowerrobot.domain.mower.exception.MowerDomainException
 
-@JvmInline
-value class Instruction(val value: Char) {
-    init {
-        require(value in VALID_INSTRUCTIONS) {
-            throw MowerDomainException.invalidInstruction(value)
-        }
-    }
+sealed class Instruction {
+    object TurnLeft : Instruction()
 
-    fun isTurnLeft() = value == 'L'
+    object TurnRight : Instruction()
 
-    fun isTurnRight() = value == 'R'
-
-    fun isMove() = value == 'M'
+    object Move : Instruction()
 
     companion object {
-        private val VALID_INSTRUCTIONS = setOf('L', 'R', 'M')
-
-        fun fromChar(value: Char): Instruction = Instruction(value)
+        fun fromChar(value: Char): Instruction =
+            when (value) {
+                'L' -> TurnLeft
+                'R' -> TurnRight
+                'M' -> Move
+                else -> throw MowerDomainException.invalidInstruction(value)
+            }
     }
 }
