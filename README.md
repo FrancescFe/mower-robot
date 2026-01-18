@@ -125,6 +125,18 @@ This project follows a structured Git workflow designed for traceability and cle
      - Maintain a clean, linear commit history on main
      - Consolidate WIP commits into a single meaningful commit
 
+### QA Test Files
+
+The `qa/` folder contains sample input files for manual validation of edge cases:
+
+| File                           | Description                         |
+|--------------------------------|-------------------------------------|
+| `01_basic_single_robot.txt`    | Single robot basic movement         |
+| `02_basic_multiple_robots.txt` | Multiple robots execution           |
+| `03_boundary_movements.txt`    | Robot attempts to move outside grid |
+| `04_robot_at_origin.txt`       | Robot starting at origin            |
+| `05_all_orientations.txt`      | Tests all orientations (N, E, S, W) |
+
 ## Assumptions
 - Invalid instructions are considered domain errors and cause the system to fail fast.
 - The domain model is designed to be framework-agnostic and independent of any input/output or infrastructure concerns.
@@ -136,6 +148,12 @@ This project follows a structured Git workflow designed for traceability and cle
 ## Possible Improvements
 1. Improve Test Coverage:
     - Expand InputParser Tests to cover better the bad paths scenarios.
+2. Add QA Action:
+    - Automate the execution of QA test files as part of the CI pipeline.
+3. Improve Mower logic:
+    - Refactor Mower movement logic to validate that there is no other mower in that grid cell.
+4. Include Docker Support:
+    - Provide a Dockerfile for easier execution.
 
 ## How to Run the Application
 
@@ -148,3 +166,10 @@ The application reads input from stdin and outputs results to stdout:
 
 ```bash
 ./gradlew run < input.txt
+```
+
+To run all QA files at once:
+```bash
+chmod +x qa/run_all.sh
+./qa/run_all.sh
+```
