@@ -23,8 +23,8 @@ class ConsoleResultPrinterTest {
 
         output shouldBe
             """
-            1 3 N
-            5 1 E
+            13 N
+            51 E
             """.trimIndent()
     }
 

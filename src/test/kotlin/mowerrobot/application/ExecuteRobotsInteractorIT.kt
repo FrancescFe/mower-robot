@@ -1,18 +1,16 @@
 package mowerrobot.application
 
 import io.kotest.matchers.shouldBe
-import mowerrobot.application.fake.FakeResultPrinter
 import org.francescfe.mowerrobot.application.dto.ExecuteRobotsCommand
 import org.francescfe.mowerrobot.application.dto.InstructionDto
 import org.francescfe.mowerrobot.application.dto.OrientationDto
 import org.francescfe.mowerrobot.application.dto.RobotCommand
 import org.francescfe.mowerrobot.application.dto.RobotResult
 import org.francescfe.mowerrobot.application.usecase.ExecuteRobotsInteractor
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 
 class ExecuteRobotsInteractorIT {
-    private val printer = FakeResultPrinter()
-    private val useCase = ExecuteRobotsInteractor(printer)
+    private val useCase = ExecuteRobotsInteractor()
 
     @Test
     fun `executes multiple robots sequentially within grid`() {
