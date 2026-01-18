@@ -7,7 +7,7 @@ import org.francescfe.mowerrobot.application.dto.OrientationDto
 import org.francescfe.mowerrobot.application.dto.RobotCommand
 import org.francescfe.mowerrobot.application.dto.RobotResult
 import org.francescfe.mowerrobot.application.usecase.ExecuteRobotsInteractor
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 
 class ExecuteRobotsInteractorIT {
     private val useCase = ExecuteRobotsInteractor()

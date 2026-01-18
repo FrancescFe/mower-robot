@@ -8,7 +8,7 @@
 
 - **Kotlin 2.2** - Modern JVM language with null safety and functional programming support
 - **Gradle 8.14** - Build automation tool with Kotlin DSL
-- **JUnit 5** - Testing framework
+- **kotlin-test + JUnit 5 Platform** - Testing framework
 - **Kotest** - Assertion library for expressive test assertions
 - **Spotless + Ktlint** - Static code formatting
 - **GitHub Actions** - CI/CD pipeline
@@ -136,3 +136,15 @@ This project follows a structured Git workflow designed for traceability and cle
 ## Possible Improvements
 1. Improve Test Coverage:
     - Expand InputParser Tests to cover better the bad paths scenarios.
+
+## How to Run the Application
+
+### Prerequisites
+- Java 21 (JDK)
+
+### Running via Gradle
+
+The application reads input from stdin and outputs results to stdout:
+
+```bash
+./gradlew run < input.txt
