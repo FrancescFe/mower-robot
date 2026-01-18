@@ -141,7 +141,7 @@ The `qa/` folder contains sample input files for manual validation of edge cases
 - Invalid instructions are considered domain errors and cause the system to fail fast.
 - The domain model is designed to be framework-agnostic and independent of any input/output or infrastructure concerns.
 - Grid size validation is treated as a configuration concern. Since an invalid grid prevents the system from functioning at all, standard argument validation is used instead of domain-specific exceptions.
-- Attempting to move outside the grid is considered a valid boundary condition and is handled as part of normal domain behavior.
+- Attempting to move outside the grid is considered a valid boundary condition and is handled as part of normal domain behavior. The mower simply ignores such movement commands.
 - The application layer orchestrates robot execution sequentially (one robot completes before the next starts).
 - Grid coordinates are single-digit values (0-9). This constraint simplifies input parsing by using character-based coordinate extraction.
 
