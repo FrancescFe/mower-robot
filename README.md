@@ -30,26 +30,37 @@ At the same time, the project follows DDD principles with a single bounded conte
 ```
 src/main/kotlin
 └── mowerrobot
-├── application
-│ ├── dto
-│ ├── mapper
-│ ├── port
-│ │ ├── input
-│ │ │ └── ExecuteRobotsUseCase.kt
-│ │ └── output
-│ │   └── ResultPrinter.kt
-│ └── usecase
-│   └── ExecuteRobotsInteractor.kt
-└── domain
-│ └── mower
-│   ├── Mower.kt
-│   ├── Instruction.kt
-│   └── exception
-├── grid
-│ └── Grid.kt
-└── spatial
-  ├── Position.kt
-  └── Orientation.kt
+    ├── application
+    │   ├── dto
+    │   ├── mapper
+    │   ├── port
+    │   │   ├── input
+    │   │   │   └── ExecuteRobotsUseCase.kt
+    │   │   └── output
+    │   │       └── ResultPrinter.kt
+    │   └── usecase
+    │       └── ExecuteRobotsInteractor.kt
+    ├── domain
+    │   ├── grid
+    │   │   └── Grid.kt
+    │   ├── mower
+    │   │   ├── Mower.kt
+    │   │   ├── Instruction.kt
+    │   │   └── exception
+    │   │       └── MowerDomainException.kt
+    │   └── spatial
+    │       ├── Position.kt
+    │       └── Orientation.kt
+    └── infrastructure
+        ├── input
+        │   └── cli
+        │       ├── InputParser.kt
+        │       ├── MowerRobotCli.kt
+        │       └── exception
+        │           └── InputValidationException.kt
+        └── output
+            └── cli
+                └── ConsoleResultPrinter.kt
 ```
 
 ### Design Principles & Patterns
@@ -70,7 +81,7 @@ src/main/kotlin
 - **Immutability**: All domain objects are immutable; operations return new instances rather than modifying state
 - **Factory Methods**: Static factory methods (e.g., `Instruction.fromChar()`) provide controlled object creation
 - **Command Query Separation**: `ExecuteRobotsCommand` encapsulates all input data for the use case
-- **Ports & Adapters**: Input/Output ports abstract external dependencies from the application core
+- **Ports & Adapters**: Input/Output ports and adapters ensure abstraction from external dependencies and separation between layers
 - **DTO Pattern**: Data Transfer Objects isolate application boundaries from domain internals
 - **Fail Fast**: Invalid instructions are rejected at construction time using domain-specific exceptions
 - **Object Mother** (testing): Test fixtures provide semantic factory methods for creating test objects
@@ -120,3 +131,8 @@ This project follows a structured Git workflow designed for traceability and cle
 - Grid size validation is treated as a configuration concern. Since an invalid grid prevents the system from functioning at all, standard argument validation is used instead of domain-specific exceptions.
 - Attempting to move outside the grid is considered a valid boundary condition and is handled as part of normal domain behavior.
 - The application layer orchestrates robot execution sequentially (one robot completes before the next starts).
+- Grid coordinates are single-digit values (0-9). This constraint simplifies input parsing by using character-based coordinate extraction.
+
+## Possible Improvements
+1. Improve Test Coverage:
+    - Expand InputParser Tests to cover better the bad paths scenarios.
