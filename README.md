@@ -132,3 +132,7 @@ This project follows a structured Git workflow designed for traceability and cle
 - Attempting to move outside the grid is considered a valid boundary condition and is handled as part of normal domain behavior.
 - The application layer orchestrates robot execution sequentially (one robot completes before the next starts).
 - Grid coordinates are single-digit values (0-9). This constraint simplifies input parsing by using character-based coordinate extraction.
+
+## Possible Improvements
+1. Improve Test Coverage:
+    - Expand InputParser Tests to cover better the bad paths scenarios.
