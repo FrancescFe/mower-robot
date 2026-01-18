@@ -5,15 +5,15 @@ import org.francescfe.mowerrobot.application.dto.RobotCommand
 import org.francescfe.mowerrobot.application.dto.RobotResult
 import org.francescfe.mowerrobot.application.mapper.toDomain
 import org.francescfe.mowerrobot.application.mapper.toResult
-import org.francescfe.mowerrobot.application.port.input.ExecuteMowerRobotsUseCase
+import org.francescfe.mowerrobot.application.port.input.ExecuteRobotsUseCase
 import org.francescfe.mowerrobot.application.port.output.ResultPrinter
 import org.francescfe.mowerrobot.domain.grid.Grid
 import org.francescfe.mowerrobot.domain.mower.Mower
 import org.francescfe.mowerrobot.domain.spatial.Position
 
-class ExecuteMowerRobotsService(
+class ExecuteRobotsInteractor(
     private val resultPrinter: ResultPrinter,
-) : ExecuteMowerRobotsUseCase {
+) : ExecuteRobotsUseCase {
     override fun execute(command: ExecuteRobotsCommand): List<RobotResult> {
         val grid =
             Grid(

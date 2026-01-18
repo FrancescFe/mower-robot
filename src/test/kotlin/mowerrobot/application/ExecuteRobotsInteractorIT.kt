@@ -7,12 +7,12 @@ import org.francescfe.mowerrobot.application.dto.InstructionDto
 import org.francescfe.mowerrobot.application.dto.OrientationDto
 import org.francescfe.mowerrobot.application.dto.RobotCommand
 import org.francescfe.mowerrobot.application.dto.RobotResult
-import org.francescfe.mowerrobot.application.usecase.ExecuteMowerRobotsService
+import org.francescfe.mowerrobot.application.usecase.ExecuteRobotsInteractor
 import org.junit.jupiter.api.Test
 
-class ExecuteMowerRobotsServiceIT {
+class ExecuteRobotsInteractorIT {
     private val printer = FakeResultPrinter()
-    private val useCase = ExecuteMowerRobotsService(printer)
+    private val useCase = ExecuteRobotsInteractor(printer)
 
     @Test
     fun `executes multiple robots sequentially within grid`() {
