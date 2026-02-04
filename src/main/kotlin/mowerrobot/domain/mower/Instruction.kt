@@ -9,12 +9,15 @@ sealed class Instruction {
 
     object Move : Instruction()
 
+    object MoveBackwards : Instruction()
+
     companion object {
         fun fromChar(value: Char): Instruction =
             when (value) {
                 'L' -> TurnLeft
                 'R' -> TurnRight
                 'M' -> Move
+                'B' -> MoveBackwards
                 else -> throw MowerDomainException.invalidInstruction(value)
             }
     }

@@ -42,6 +42,16 @@ class MowerTest {
     }
 
     @Test
+    fun `should move backwards when executing B instruction facing North`() {
+        val mower = MowerMother.at(2, 2, Orientation.N)
+
+        val result = mower.execute(InstructionMother.moveBackwards(), grid)
+
+        assertEquals(PositionMother.at(2, 1), result.position)
+        assertEquals(Orientation.N, result.orientation)
+    }
+
+    @Test
     fun `should move forward when executing M instruction facing South`() {
         val mower = MowerMother.at(1, 2, Orientation.S)
 
