@@ -31,6 +31,13 @@ class InstructionTest {
     }
 
     @Test
+    fun `should move backwards when executing B instruction`() {
+        val instruction = InstructionMother.moveBackwards()
+
+        assertIs<Instruction.MoveBackwards>(instruction)
+    }
+
+    @Test
     fun `should reject invalid instruction character`() {
         assertFailsWith<MowerDomainException> {
             Instruction.fromChar('X')

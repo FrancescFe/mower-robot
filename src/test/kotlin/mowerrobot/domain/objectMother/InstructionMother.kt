@@ -9,5 +9,7 @@ object InstructionMother {
 
     fun move(): Instruction = Instruction.Move
 
+    fun moveBackwards(): Instruction = Instruction.MoveBackwards
+
     fun listFrom(vararg chars: Char): List<Instruction> = chars.map { Instruction.fromChar(it) }
 }

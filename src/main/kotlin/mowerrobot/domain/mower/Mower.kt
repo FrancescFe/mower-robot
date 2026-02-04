@@ -16,6 +16,7 @@ class Mower(
             is Instruction.TurnLeft -> rotateLeft()
             is Instruction.TurnRight -> rotateRight()
             is Instruction.Move -> moveForward(grid)
+            is Instruction.MoveBackwards -> moveBackward(grid)
         }
 
     fun executeAll(
@@ -45,6 +46,22 @@ class Mower(
                 Orientation.S -> Position(position.x, position.y - 1)
                 Orientation.E -> Position(position.x + 1, position.y)
                 Orientation.W -> Position(position.x - 1, position.y)
+            }
+
+        return if (grid.isWithinBounds(candidatePosition)) {
+            Mower(candidatePosition, orientation)
+        } else {
+            this
+        }
+    }
+
+    private fun moveBackward(grid: Grid): Mower {
+        val candidatePosition =
+            when (orientation) {
+                Orientation.N -> Position(position.x, position.y - 1)
+                Orientation.S -> Position(position.x, position.y + 1)
+                Orientation.E -> Position(position.x - 1, position.y)
+                Orientation.W -> Position(position.x + 1, position.y)
             }
 
         return if (grid.isWithinBounds(candidatePosition)) {
