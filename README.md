@@ -1,8 +1,4 @@
-# VW DIGITAL:HUB Mower Robot Challenge
-
-| Name     | Surname      |
-|----------|--------------|
-| Francesc | Ferrer Rubio |
+# Mower Robot Challenge
 
 ## Technologies Used
 

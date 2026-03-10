@@ -3,6 +3,7 @@ package org.francescfe
 import org.francescfe.mowerrobot.application.port.input.ExecuteRobotsUseCase
 import org.francescfe.mowerrobot.application.usecase.ExecuteRobotsInteractor
 import org.francescfe.mowerrobot.infrastructure.input.cli.InputParser
+import org.francescfe.mowerrobot.infrastructure.input.cli.exception.InputValidationException
 import org.francescfe.mowerrobot.infrastructure.output.cli.ConsoleResultPrinter
 
 fun main() {
@@ -19,7 +20,9 @@ fun main() {
         val results = useCase.execute(command)
 
         resultPrinter.print(results)
-    } catch (ex: Exception) {
+    } catch (ex: InputValidationException) {
         System.err.println("ERROR: ${ex.message}")
+    } catch (ex: Exception) {
+        System.err.println("UNEXPECTED ERROR: ${ex.message}")
     }
 }
